@@ -1,0 +1,26 @@
+{
+  "name": "againNodeBlog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=dev nodemon ./bin/www.js",
+    "prd": "cross-env NODE_ENV=production nodemon ./bin/www.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webfrontup/againNodeBlog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webfrontup/againNodeBlog/issues"
+  },
+  "homepage": "https://github.com/webfrontup/againNodeBlog#readme",
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.19.0"
+  }
+}

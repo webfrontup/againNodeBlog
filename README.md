@@ -8,7 +8,7 @@
 - cd /usr/local/mysql/support-files
 
 
-### use Sequel Pro (Mac)
+### 封装exec函数，API使用exec操作数据库 创建库、表、SQL语句的语法和使用
 ```mysql
 use `myblog`;
 -- show tables;
@@ -36,4 +36,25 @@ update users set state = '0' where username="lisi"; -- 软删除
 insert into blogs (title,content,createtime,author) values('标题B','内容B',1560528038008,'lisi')
 
 select version()
+```
+
+### 执行sql语句
+```mysql
+    delete http://localhost:8000/api/blog/del?id=3
+    post http://localhost:8000/api/blog/new 
+        body:{
+            "title": "title100",
+            "content": "content100"
+        }
+    update http://localhost:8000/api/blog/update?id=3
+        body:{
+            "title": "title101A",
+            "content": "content102A"
+        }
+    
+    login http://localhost:8000/api/user/login
+        body: {
+        "username": "lisi",
+        "password": "123"
+    }
 ```

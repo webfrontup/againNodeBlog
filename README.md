@@ -78,4 +78,8 @@ select version()
 - console端输入document.cookie
 
 
+### 注意事项
+- 用get方式通过cookie和后端通信，会暴露对应字段(username)
+- 用session在server端存储用户信息 来，解决cookie的缺陷：cookie中存储userid，server端对应username 
+- 
 

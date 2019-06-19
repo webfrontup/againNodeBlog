@@ -1,6 +1,12 @@
 const {login} = require('../controller/user')
 const { SuccessModel, ErrorModel } = require("../model/resModel");
 
+const getCookieExpires = () => {
+    const d = new Date();
+    d.setTime(d.getTime() + (24*60*60*1000))
+    return d.toGMTString()
+}
+
 const handleBlogRouter = (req, res) => {
     const method = req.method
     // 登录
@@ -12,7 +18,7 @@ const handleBlogRouter = (req, res) => {
         const result = login(username, password);
         return result.then(data => {
             if (data.username) {
-                res.setHeader('Set-Cookie',`username=${data.username}; path=/`);
+                res.setHeader('Set-Cookie',`username=${data.username}; path=/; httpOnly; expires=${getCookieExpires()}`);
                 return new SuccessModel()
 			} else {
 				return new ErrorModel("登录失败");

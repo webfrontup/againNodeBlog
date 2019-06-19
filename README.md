@@ -58,3 +58,24 @@ select version()
         "password": "123"
     }
 ```
+
+### 登录
+- 核心: 登录校验 & 登录信息存储
+- cookie 和 session、session写入redis
+- 开发登录功能，和前端联调(用到nginx反向代理)
+
+### cookie
+- 存储在浏览器的一段字符串(最大5kb)
+- 跨域不共享
+- 存储的是结构化的数据（类似obj key-value）
+- 每次发送http请求，会将请求域的cookie一起发送给server
+- server 可以修改cookie 并返回个浏览器
+- 浏览器也可以通过js修改cookie（有限制）
+
+### 客户端查看cookie,三种方式
+- 浏览器中 Response Headers里面的cookie
+- chorme中application的storage中的cookie项
+- console端输入document.cookie
+
+
+

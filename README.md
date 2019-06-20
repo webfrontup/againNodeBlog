@@ -87,8 +87,8 @@ select version()
 - 1，进程内存有限，访问量过大，内存暴增：
 - 2，正式线上运行时多进程，进程之间内存无法共享
 - 3，用redis解决
-- ![redis][https://github.com/webfrontup/againNodeBlog/tree/master/img/redis.png "redis"]
-- ![processMemoryModel](https://github.com/webfrontup/againNodeBlog/tree/master/img/processMemoryModel.png)
+- ![redis](https://github.com/webfrontup/againNodeBlog/blob/master/img/redis.png)
+- ![processMemoryModel](https://github.com/webfrontup/againNodeBlog/blob/master/img/processMemoryModel.png)
 
 ### redis
 - web server 最常用的缓存数据库，数据存放在内存中

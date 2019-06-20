@@ -7,7 +7,7 @@ if(env === 'dev'){
 		host: "localhost",
 		user: "root",
 		password: "root",
-		port: "33062",
+		port: "33061",
 		database: "myblog"
 	};
 }

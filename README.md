@@ -81,5 +81,46 @@ select version()
 ### 注意事项
 - 用get方式通过cookie和后端通信，会暴露对应字段(username)
 - 用session在server端存储用户信息 来，解决cookie的缺陷：cookie中存储userid，server端对应username 
-- 
+
+
+### 如果session直接是js变量，放在nodejs内存中造成的问题：
+- 1，进程内存有限，访问量过大，内存暴增：
+- 2，正式线上运行时多进程，进程之间内存无法共享
+- 3，用redis解决
+### redis
+- web server 最常用的缓存数据库，数据存放在内存中
+- 相比于 mysql，访问速度快(内存和硬盘不是一个数量级的)
+- 但是成本更高，可存储的数据量更小
+- 将 web server 和 redis 拆分为两个单独的服务
+- 双方都是独立的，都是可扩展的
+### 为何session适用redis？
+- session 访问频繁，对性能要求极高
+- session 可不考虑断电丢失数据的问题
+- session 数据量不会太大
+### 为何网站数据不适用redis？
+- 操作频率不是太高（相比于session操作）
+- 断电不能丢失，必须保留
+- 数据量太大，内存成本太高
+
+
+### 进程内存模型
+stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组，函数。。。)
+
+### 安装 redis
+- Windows http://www.runood.com/redis/redis-install.html
+- Mac 使用 brew install redis
+- redis-server redis-cli 双端口执行 （“127.0.0.1:6379>”）
+- set myname yyccQQu
+- get myname
+- keys * 查看所有存储的redis数据
+- del myname
+
+
+
+
+
+
+
+
+
 

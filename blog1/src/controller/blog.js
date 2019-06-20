@@ -8,7 +8,7 @@ const getList = (author, keyword) => {
 	if(keyword) {
 		sql += `and title like '%${keyword}%' `
 	}
-	sql += `order by createtime desc`
+	sql += `order by createtime desc;`
 	return exec(sql)
 }
 

@@ -66,7 +66,7 @@
         const $container = $('#blog-container')
 
         // 拼接接口 url
-        let url = '/api/blog/list'
+        let url = '/api/blog/list?isadmin=1' //增加一个 isadmin=1 参数，使用登录者的用户名
         const urlParams = getUrlParams()
         if (urlParams.author) {
             url += '?author=' + urlParams.author

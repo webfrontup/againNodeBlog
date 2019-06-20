@@ -9,11 +9,12 @@ const { SuccessModel, ErrorModel } = require("../model/resModel");
 
 // 统一的登录验证函数
 const loginChecks = (req) => {
+	console.log(req.session.username, "req.session.username");
     if(!req.session.username) {
         return Promise.resolve(
             new ErrorModel('尚未登录')
         )
-    }
+	}
 }
 
 const handleBlogRouter = (req, res) => {
@@ -22,10 +23,22 @@ const handleBlogRouter = (req, res) => {
 	//获取博客列表
 	// http://localhost:8000/api/blog/list?author=%22lisi%22&keyword=B
 	if (method === "GET" && req.path === "/api/blog/list") {
-		const author = req.query.author || "";
+		let author = req.query.author || "";
 		const keyword = req.query.keyword || "";
 		// const listData = getList(author, keyword);
 		// return new SuccessModel(listData);
+		console.log(req.query.isadmin,'isadmin');
+		if(req.query.isadmin) {
+			// 管理员界面
+			const loginCheckResult = loginChecks(req);
+			console.log(loginCheckResult, "loginCheckResult");
+			if (loginCheckResult) {
+				// 未登录
+				return loginCheckResult;
+			}
+			// 强制查询自己的博客
+			author = req.session.username
+		}
 		const result = getList(author, keyword);
 		return result.then(listData => {
 			return new SuccessModel(listData)
@@ -50,7 +63,7 @@ const handleBlogRouter = (req, res) => {
         const loginCheckResult = loginChecks(req);
         if (loginCheckResult){
             // 未登录
-            return loginChecks;
+            return loginCheckResult;
         }
         
 		req.body.author = req.session.username;
@@ -66,7 +79,7 @@ const handleBlogRouter = (req, res) => {
         const loginCheckResult = loginChecks(req);
         if (loginCheckResult) {
             // 未登录
-            return loginChecks;
+            return loginCheckResult;
         }
 
 		const result = updateBlog(id, req.body)
@@ -85,7 +98,7 @@ const handleBlogRouter = (req, res) => {
         const loginCheckResult = loginChecks(req);
         if (loginCheckResult) {
             // 未登录
-            return loginChecks;
+            return loginCheckResult;
         }
 
         const author = req.session.username;

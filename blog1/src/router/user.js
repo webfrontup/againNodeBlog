@@ -12,9 +12,9 @@ const handleBlogRouter = (req, res) => {
     // 登录
     // 流程，先进/api/user/login，由客户端传cookie，服务端利用传进来的值，设置cookie，
     // 再进/api/user/login-test，由服务端返回cookie
-    if (method === 'POST' && req.path === '/api/user/login'){
-        const { username, password } = req.body;
-        // const { username, password } = req.query;
+    if (method === 'GET' && req.path === '/api/user/login'){
+        // const { username, password } = req.body;
+        const { username, password } = req.query;
         const result = login(username, password);
         return result.then(data => {
             if (data.username) {

@@ -105,6 +105,11 @@ select version()
 - 断电不能丢失，必须保留
 - 数据量太大，内存成本太高
 
+### 登录验证联调
+- 登录功能依赖cookie，必须用浏览器来联调
+- cookie跨域不共享，前端和server端必须同域
+- 用nginx做代理
+
 
 ### 进程内存模型
 stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组，函数。。。)
@@ -117,7 +122,6 @@ stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组�
 - get myname
 - keys * 查看所有存储的redis数据
 - del myname
-
 
 
 

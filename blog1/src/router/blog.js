@@ -7,6 +7,15 @@ const {
 } = require("../controller/blog");
 const { SuccessModel, ErrorModel } = require("../model/resModel");
 
+// 统一的登录验证函数
+const loginChecks = (req) => {
+    if(!req.session.username) {
+        return Promise.resolve(
+            new ErrorModel('尚未登录')
+        )
+    }
+}
+
 const handleBlogRouter = (req, res) => {
 	const method = req.method;
 	const id = req.query.id;
@@ -37,8 +46,14 @@ const handleBlogRouter = (req, res) => {
 	if (method === "POST" && req.path === "/api/blog/new") {
 		// const data = newBlog(req.body);
 		// return new SuccessModel(data);
-		const author = 'zhangsan2'
-		req.body.author = "zhangsan2";
+        
+        const loginCheckResult = loginChecks(req);
+        if (loginCheckResult){
+            // 未登录
+            return loginChecks;
+        }
+        
+		req.body.author = req.session.username;
 		const result = newBlog(req.body)
 		return result.then(data => {
 			return new SuccessModel(data)
@@ -47,6 +62,13 @@ const handleBlogRouter = (req, res) => {
 
 	// 更新一篇博客
 	if (method === "POST" && req.path === "/api/blog/update") {
+
+        const loginCheckResult = loginChecks(req);
+        if (loginCheckResult) {
+            // 未登录
+            return loginChecks;
+        }
+
 		const result = updateBlog(id, req.body)
 		return result.then(val => {
 			if(val) {
@@ -60,7 +82,13 @@ const handleBlogRouter = (req, res) => {
 
 	// 删除一篇博客
 	if (method === "DELETE" && req.path === "/api/blog/del") {
-		const author = "zhangsan2";
+        const loginCheckResult = loginChecks(req);
+        if (loginCheckResult) {
+            // 未登录
+            return loginChecks;
+        }
+
+        const author = req.session.username;
 		const result = delBlog(id, author);
 		return result.then(val => {
 			if (val) {

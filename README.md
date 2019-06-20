@@ -123,7 +123,9 @@ stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组�
 - keys * 查看所有存储的redis数据
 - del myname
 
-
+### nginx 
+- 高性能web服务器，一般用于静态服务、负载均衡
+- 反向代理
 
 
 

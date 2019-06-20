@@ -8,7 +8,7 @@ if(env === 'dev'){
 		host: "localhost",
 		user: "root",
 		password: "root",
-		port: "33061",
+		port: "33062",
 		database: "myblog"
     };
     // redis

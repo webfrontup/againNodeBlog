@@ -212,3 +212,15 @@ stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组�
 - 日志记录
 - 流程图
 ![流程图](https://github.com/webfrontup/againNodeBlog/blob/master/img/%20flow_chart.png)
+
+
+### 使用express
+- (sudo) npm i express-generator -g
+- express --version
+- 删除文件夹用 rm -rf blog-express
+- express blog-express
+- 登录用 express-session 和 connect-redis
+- req.session 保存登录信息，登录校验做成express中间件
+- access log 记录，直接使用脚手架推荐的 morgan
+- 自定义日志使用console.log和console.error
+

@@ -6,14 +6,14 @@ redisClient.on("error", err => {
 	console.error(err);
 });
 
-function redisSet(key, val) {
+function set(key, val) {
 	if (typeof val === "object") {
 		val = JSON.stringify(val);
 		redisClient.set(key, val, redis.print);
 	}
 }
 
-function redisGet(key) {
+function get(key) {
 	return new Promise((resolve, reject) => {
 		redisClient.get(key, (err, val) => {
 			if (err) {
@@ -35,7 +35,7 @@ function redisGet(key) {
 }
 
 module.exports = {
-    redisSet,
-    redisGet
+    set,
+    get
 }
 

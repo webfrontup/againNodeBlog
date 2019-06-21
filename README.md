@@ -1,5 +1,26 @@
 # againNodeBlog
 
+### 操作
+- cd blog1 `npm run dev`
+- cd html-test `http-server -p 8001`
+- nginx 将8001和8000代理到8080
+```
+server {
+    listen  8080;
+    server_name  localhost;
+    location / {
+        proxy_pass  http://localhost:8001;
+    }
+    location /api {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+    }
+}
+```
+- 浏览器地址 需要先登录 所以 `http://localhost:8080/api/user/login?username=lisi&password=123`
+- 再到首页 http://localhost:8080
+- 代理完成
+
 ### 路由和API 之间的区别
 - API: 前后端、不同端之间对接`url`的一个术语
 - 路由：API的一部分，后端系统内部的一个定义
@@ -124,11 +145,20 @@ stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组�
 - del myname
 
 ### nginx 
+- nginx文件地址 `/usr/local/etc/nginx/nginx.conf`
 - 高性能web服务器，一般用于静态服务、负载均衡
 - 反向代理
 
+### 日志
+- 访问日志 access log(server端最重要的日志)
+- 自定义日志(包括自定义事件，错误记录等)
+- 放入线上之后会将资源放入文件夹中，所以需要nodejs文件操作
 
-
+### nodejs文件操作
+- 使用nodejs stream(节省CPU和性能)
+- 日志功能开发和使用
+- 日志文件拆分，日志内容分析
+- 日志要存储到文件中
 
 
 

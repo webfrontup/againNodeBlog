@@ -32,6 +32,7 @@ server {
 ### 封装exec函数，API使用exec操作数据库 创建库、表、SQL语句的语法和使用
 ```mysql
 use `myblog`;
+-- SET SQL_SAFE_UPDATES = 0;
 -- show tables;
 
 -- insert into users (username,`password`,realname) values ('lisi','123','李四');
@@ -180,4 +181,34 @@ stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组�
 - 相比于CPU计算和内存读写，IO的突出特点就是：慢！
 - 如何在有限的硬件资源下提高IO的操作效率？
 
+### 安全（webserver方面）
+- sql注入：窃取数据库内容
+```
+    用username:'lisi'  password: xxxxx;登录
 
+    user myblog;
+    select username,realname from users
+    where username='lisi'; -- 'and password=123';
+```
+- XSS攻击：窃取前端cookie内容
+```
+    npm i xss 
+    将需要传递的参数用xss包裹起来
+    const title = xss(blogData.title);
+	const content = xss(blogData.content);
+	const author = xss(blogData.author);
+```
+- 密码加密：保障用户信息安全
+```
+    万一数据库被用户攻破，最不应该泄露的就是用户信息
+    攻击方式： 获取用户名和密码，再去尝试登录其他系统
+```
+
+### server 和 前端的区别
+- 服务稳定性
+- 安全 (包括登录验证)
+- 内存CPU (优化，扩展)
+- 集群和服务拆分
+- 日志记录
+- 流程图
+![流程图](https://github.com/webfrontup/againNodeBlog/blob/master/img/flow_chart.png)

@@ -211,4 +211,4 @@ stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组�
 - 集群和服务拆分
 - 日志记录
 - 流程图
-![流程图](https://github.com/webfrontup/againNodeBlog/blob/master/img/flow_chart.png)
+![流程图](https://github.com/webfrontup/againNodeBlog/blob/master/img/%20flow_chart.png)

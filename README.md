@@ -159,6 +159,21 @@ stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组�
 - 日志功能开发和使用
 - 日志文件拆分，日志内容分析
 - 日志要存储到文件中
+- 日志拆分 可以以时间拆分
+- 日志拆分实现方式 Linux的crontab命令，即定时任务
+- 将 access.log 拷贝并重命名为 2019-MM-DD.access.log
+- 清空 access.log 文件，继续积累日志
+- 日志分析 这里的日志是按行存储的，一行就是一条日志，使用nodejs的readline(基于stream)即可
+
+
+### crontab
+- 设置定时任务，格式：*****command -> *从左到右：分钟小时 年月星期
+-  crontab -e
+```
+# 每天凌晨 0点00分执行该脚本
+* 0 * * * sh /Users/xxx/adm/againNodeBlog/blog1/src/utils/copy.sh
+
+```
 
 ### IO操作的性能瓶颈
 - IO包括 "网络IO" 和 ”文件IO“

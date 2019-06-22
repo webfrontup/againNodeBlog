@@ -224,3 +224,25 @@ stack栈中存放js基础类型变量 Heap堆中存放应用类型变量(数组�
 - access log 记录，直接使用脚手架推荐的 morgan
 - 自定义日志使用console.log和console.error
 
+### pm2介绍
+- npm i pm2 -g
+- pm2 --version
+- pm2 list
+- pm2 info 、restart、stop
+- pm2 log app
+- pm2 monit 线上调试
+- 进程守护，系统崩溃自动重启
+- 启动多进程，充分利用CPU和内存
+- 自带日志记录功能
+- 进程守护
+```
+node app.js和 nodemon app.js,进程崩溃则不能访问
+pm2 遇到进程崩溃，会自动重启
+```
+
+### 为何使用多进程
+- 操作系统限制一个进程的内存
+- 内存：无法充分利用机器全部内容
+- CPU：无法充分利用多核CPU的优势
+
+
